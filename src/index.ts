@@ -40,8 +40,9 @@ app.post('/refresh', (req, res) => {
           res.sendStatus(400)
       })
   })
-
+  
   app.post('/login', (req, res) => {
+    res.header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
     const code = req.body.code
     const spotifyApi = new SpotifyWebApi({
         redirectUri: process.env.REDIRECT_URI,
@@ -56,8 +57,8 @@ app.post('/refresh', (req, res) => {
             expiresIn: data.body.expires_in,
         })
     })
-    .catch(() => {
-        res.sendStatus(400)
+    .catch((error) => {
+        res.sendStatus(error)
     })
 })
 
