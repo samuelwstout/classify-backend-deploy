@@ -17,7 +17,7 @@ app.get("/", async (req, res) => {
 app.post('/refresh', (req, res) => {
     const refreshToken = req.body.refreshToken
     const spotifyApi = new SpotifyWebApi({
-        redirectUri: process.env.REDIRECT_URI_LOCAL,
+        redirectUri: process.env.REDIRECT_URI,
         clientId: process.env.CLIENT_ID,
         clientSecret: process.env.CLIENT_SECRET,
         refreshToken,
@@ -37,7 +37,7 @@ app.post('/refresh', (req, res) => {
     res.header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
     const code = req.body.code
     const spotifyApi = new SpotifyWebApi({
-        redirectUri: process.env.REDIRECT_URI_LOCAL,
+        redirectUri: process.env.REDIRECT_URI,
         clientId: process.env.CLIENT_ID,
         clientSecret: process.env.CLIENT_SECRET,
     })
